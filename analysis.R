@@ -47,17 +47,17 @@ ggplot()+
 # prep data for gif-ing
 edweek_long <- edweek_states %>% 
   # create status for each state from 3-15 to 3-25
-  mutate(march_15 = ifelse(date_closed <= ymd("2020-03-15"), "Closed", "Open"),
-         march_16 = ifelse(date_closed <= ymd("2020-03-16"), "Closed", "Open"),
-         march_17 = ifelse(date_closed <= ymd("2020-03-17"), "Closed", "Open"),
-         march_18 = ifelse(date_closed <= ymd("2020-03-18"), "Closed", "Open"),
-         march_19 = ifelse(date_closed <= ymd("2020-03-19"), "Closed", "Open"),
-         march_20 = ifelse(date_closed <= ymd("2020-03-20"), "Closed", "Open"),
-         march_21 = ifelse(date_closed <= ymd("2020-03-21"), "Closed", "Open"),
-         march_22 = ifelse(date_closed <= ymd("2020-03-22"), "Closed", "Open"),
-         march_23 = ifelse(date_closed <= ymd("2020-03-23"), "Closed", "Open"),
-         march_24 = ifelse(date_closed <= ymd("2020-03-24"), "Closed", "Open"),
-         march_25 = ifelse(date_closed <= ymd("2020-03-25"), "Closed", "Open")) %>%
+  mutate(march_15 = ifelse(date_closed <= ymd("2020-03-15"), "Closed statewide", "District decision"),
+         march_16 = ifelse(date_closed <= ymd("2020-03-16"), "Closed statewide", "District decision"),
+         march_17 = ifelse(date_closed <= ymd("2020-03-17"), "Closed statewide", "District decision"),
+         march_18 = ifelse(date_closed <= ymd("2020-03-18"), "Closed statewide", "District decision"),
+         march_19 = ifelse(date_closed <= ymd("2020-03-19"), "Closed statewide", "District decision"),
+         march_20 = ifelse(date_closed <= ymd("2020-03-20"), "Closed statewide", "District decision"),
+         march_21 = ifelse(date_closed <= ymd("2020-03-21"), "Closed statewide", "District decision"),
+         march_22 = ifelse(date_closed <= ymd("2020-03-22"), "Closed statewide", "District decision"),
+         march_23 = ifelse(date_closed <= ymd("2020-03-23"), "Closed statewide", "District decision"),
+         march_24 = ifelse(date_closed <= ymd("2020-03-24"), "Closed statewide", "District decision"),
+         march_25 = ifelse(date_closed <= ymd("2020-03-25"), "Closed statewide", "District decision")) %>%
   # reshape from wide to long
   pivot_longer(cols = starts_with("march"),
                names_to = "time", values_to = "status") %>%
@@ -65,10 +65,10 @@ edweek_long <- edweek_states %>%
   mutate(time = str_replace(time, "march_", "2020-03-"))%>%
   mutate(time = ymd(time)) %>%
   # create special status cases for states w/o blanket closures
-  mutate(status = ifelse(state_abbv == "IA", "Open", status)) %>%
-  mutate(status = ifelse(state_abbv == "NE", "Open", status)) %>%
-  mutate(status = ifelse(state_abbv == "ME", "Open", status)) %>%
-  mutate(status = factor(status, levels = c("Open", "Closed"))) %>%
+  mutate(status = ifelse(state_abbv == "IA", "District decision", status)) %>%
+  mutate(status = ifelse(state_abbv == "NE", "District decision", status)) %>%
+  mutate(status = ifelse(state_abbv == "ME", "District decision", status)) %>%
+  mutate(status = factor(status, levels = c("District decision", "Closed statewide"))) %>%
   # sort by date
   arrange(time)
 
