@@ -6,7 +6,6 @@
 
 library(tidyverse)
 library(readxl)
-library(googlesheets4)
 library(sf)
 library(urbnmapr)
 library(lubridate)
