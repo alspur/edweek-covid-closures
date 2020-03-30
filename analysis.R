@@ -88,7 +88,8 @@ anim <- ggplot() +
   labs(title = "Covid-19 School Closures", 
        fill = "Status",
        size = "Enrollment",
-       subtitle = "Date: {format(ymd(current_frame), \"%B %d\")}")+
+       subtitle = "Date: {format(ymd(current_frame), \"%B %d\")}",
+       caption = "Data via Education Week | gif by @alspur")+
   theme_void()+
   theme(legend.position = c(.9,.4))+
   transition_manual(time)
