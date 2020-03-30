@@ -84,7 +84,7 @@ anim <- ggplot() +
                              group = group, fill = status),
                color = "white") +
   coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
-  scale_fill_manual(values = c("#4b7e9a", "#953545")) +
+  scale_fill_manual(values = c("steelblue4", "orange1")) +
   labs(title = "Covid-19 School Closures", 
        fill = "Status",
        size = "Enrollment",
